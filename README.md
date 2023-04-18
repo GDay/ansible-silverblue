@@ -1,9 +1,7 @@
 ansible-silverblue
 ==================
 
-You can use this repository to configure a [Fedora Silverblue](https://silverblue.fedoraproject.org/)
-workstation or laptop with Ansible. It will make it easier to apply the same settings to multiple
-hosts, saving you from having to manually configure your computer over and over again.
+This is my personal ansible playbook for whenever I need/want to reinstall Fedora Silverblue.
 
 Included Roles
 --------------
@@ -22,27 +20,27 @@ brief summary of each role:
 Variables
 ---------
 
-I've consolidated the project's variables into the `group_vars/all` file. This makes it easy to
-update the project's variables from a single location. You should customize the values in that
-file to set what changes get applied in the various roles.
+All the project's variables are in the `group_vars/all` file. This makes it easy to
+update the project's variables from a single location.
 
 Setup
 -----
+To do right after a fresh install of [Silverblue SwayWM spin (sericea)](https://fedoraproject.org/sericea/):
 
-Clone this repository with:
-
-  - `git clone https://github.com/j1mc/ansible-silverblue.git`
-
-Install needed dependencies with:
-
-  - `cd ansible-silverblue`
-  - `python3 -m venv venv`
-  - `source venv/bin/activate`
-  - `pip3 install -r requirements.txt`
-  - `ansible-galaxy collection install -r requirements.yml`
-
-... then make edits to the `group_vars/all` file to customize this project to make it do what you
-want it to do.
+```
+# install git needed to fetch this repo
+rmp-ostree install git 
+# reboot to apply changes
+systemctl reboot
+# clone this repo
+git clone https://github.com/GDay/ansible-silverblue
+# set up ansible
+cd ansible-silverblue
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+ansible-galaxy collection install -r requirements.yml
+```
 
 Run the Playbooks
 -----------------
@@ -51,15 +49,15 @@ This command will run all of the included playbooks:
 
 `ansible-playbook -i hosts -l this_host -K -v playbook_base.yml`
 
-If you want to run any of the roles individually, please review that role's `README` file for the
-needed command.
+Roles can be run individually, see that role's `README` file for the needed command.
 
 License
 -------
 
 Unless otherwise indicated in the individual role, this project is under the BSD License.
 
-Author
-------
 
-  * Jim Campbell (jwcampbell@gmail.com)
+Credits
+-------
+
+This setup has been based of Jim Campbell's example which can be found here: https://github.com/j1mc/ansible-silverblue
