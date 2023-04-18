@@ -10,8 +10,8 @@ layered_package_install:
   - fish
 
 base_package_remove:
+  - firefox-langpacks
   - firefox
-  - firefox-lang-packs
 
 # The 'flatpak' role #
 ######################

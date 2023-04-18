@@ -24,6 +24,7 @@
   become: yes
   become_method: sudo
   loop: "{{ base_package_remove }}"
+  failed_when: ostree_status.rc == "999"  # Don't fail, regardless of return code
 
 - debug:
     msg: "A reboot is required to complete installation / removal of these packages"
